@@ -8,7 +8,8 @@ import os,os.path
 
 print os.path.abspath('test0')
 print os.name
-print os.getcwd()
-print os.listdir()
-
-print os.chroot()
+print os.listdir(os.getcwd())
+if os.system('ifconfig'):
+    print('Yes')
+else:
+    print("No")
