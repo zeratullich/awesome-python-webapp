@@ -10,3 +10,5 @@ print os.path.abspath('test0')
 print os.name
 print os.getcwd()
 print os.listdir()
+
+print os.chroot()
