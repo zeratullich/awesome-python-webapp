@@ -4,6 +4,9 @@
 __author__ = 'ITsystem'
 __mtime__ = '2015/10/28'
 
+import os,os.path
+
+print os.path.abspath('test0')
 
 
 
