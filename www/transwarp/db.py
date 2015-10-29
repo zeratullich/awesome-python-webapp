@@ -497,7 +497,6 @@ if __name__ == '__main__':
     update('drop table if exists user')
     update('create table user (id int primary key, name text, email text, passwd text, last_modified real)')
     import doctest
-
     doctest.testmod()
     users = select('select * from user')
     print users
