@@ -95,7 +95,7 @@ def _gen_sql(table_name, mappings):
     sql = ['-- generating SQL for %s:' % table_name, 'create table `%s` (' % table_name]
     for f in sorted(mappings.values(), lambda x, y: cmp(x._order, y._order)):
         if not hasattr(f, 'ddl'):
-            raise StandardError('no ddl in field "%s".' % n)
+            raise StandardError('no ddl in field "%s".' % f)
         ddl = f.ddl
         nullable = f.nullable
         if f.primary_key:
@@ -258,4 +258,46 @@ class Model(dict):
         '''
         return db.select_int('select count(`%s`) from `%s` %s' % (cls.__primary_key__.name, cls.__table__, where), *args)
 
+    def update(self):
+        self.pre_update and self.pre_update()
+        L = []
+        args = []
+        for k, v in self.__mappings__.iteritems():
+            if v.updatable:
+                if hasattr(self, k):
+                    arg = getattr(self, k)
+                else:
+                    arg = v.default
+                    setattr(self, k, arg)
+                L.append('`%s`=?' % k)
+                args.append(arg)
+        pk = self.__primary_key__.name
+        args.append(getattr(self, pk))
+        db.update('update `%s` set %s where %s=?' % (self.__table__, ','.join(L), pk), *args)
+        return self
 
+    def delete(self):
+        self.pre_delete and self.pre_delete()
+        pk = self.__primary_key__.name
+        args = (getattr(self, pk), )
+        db.update('delete from `%s` where `%s`=?' % (self.__table__, pk), *args)
+        return self
+
+    def insert(self):
+        self.pre_insert and self.pre_insert()
+        params = {}
+        for k, v in self.__mappings__.iteritems():
+            if v.insertable:
+                if not hasattr(self, k):
+                    setattr(self, k, v.default)
+                params[v.name] = getattr(self, k)
+        db.insert('%s' % self.__table__, **params)
+        return self
+
+if __name__=='__main__':
+    logging.basicConfig(level=logging.DEBUG)
+    db.create_engine('www-data', 'www-data', 'test')
+    db.update('drop table if exists user')
+    db.update('create table user (id int primary key, name text, email text, passwd text, last_modified real)')
+    import doctest
+    doctest.testmod()
