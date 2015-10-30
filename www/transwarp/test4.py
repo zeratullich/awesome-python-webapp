@@ -28,3 +28,9 @@ talk = getTalk()
 
 # 这里你可以看到talk其实是一个函数对象:
 print talk
+
+# 该对象由函数返回的其中一个对象:
+print talk()
+
+# 或者你可以直接如下调用 :
+print getTalk("whisper")()
