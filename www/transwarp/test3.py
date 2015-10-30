@@ -19,5 +19,7 @@ def timeit(func):
 def foo():
     print 'in foo()'
 
+foo()
+
 
 
