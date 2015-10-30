@@ -5,8 +5,7 @@ __author__ = 'ITsystem'
 __mtime__ = '2015/10/30'
 
 import time
-def foo():
-    print 'in foo()'
+
 
 def timeit(func):
     def wrapper():
@@ -16,9 +15,9 @@ def timeit(func):
         print 'used: ',end -start
     return wrapper
 
-foo = timeit(foo)
-foo()
-
+@timeit
+def foo():
+    print 'in foo()'
 
 
 
