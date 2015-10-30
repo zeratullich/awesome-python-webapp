@@ -77,17 +77,6 @@ g()
 import  functools
 
 print '-------------------------'
-# def log(text=''):
-#     def decorator(func):
-#         @functools.wraps(func)
-#         def wrapper(*args,**kw):
-#             if text=='':
-#                  print func.__name__+'():'
-#             else:
-#                 print  '%s %s():' % (text, func.__name__)
-#             return func(*args,**kw)
-#         return wrapper
-#     return decorator
 def log(text):
     if callable(text):
         @functools.wraps(text)
