@@ -68,10 +68,13 @@ def deco_functionNeedDoc(func):
 @deco_functionNeedDoc
 def f():
     print 'f() Do something'
+
+
 @deco_functionNeedDoc
 def g():
     '''I have a __doc__'''
     print 'g() Do something'
+
 f()
 g()
 import  functools
