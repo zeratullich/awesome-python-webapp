@@ -32,9 +32,10 @@ class Dict(dict):
     3
     '''
     def __init__(self, names=(), values=(), **kw):
-        super(Dict, self).__init__(**kw)
+
         for k, v in zip(names, values):
             self[k] = v
+        super(Dict, self).__init__(**kw)
 
     def __getattr__(self, key):
         try:
@@ -47,8 +48,9 @@ class Dict(dict):
 
 
 if __name__ == '__main__':
-    d=Dict()
+    d=Dict(names='d',values='o')
     d.x=100
     print d['x']
+    print d
 
 

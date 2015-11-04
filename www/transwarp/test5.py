@@ -15,19 +15,15 @@ print a
 print b
 print c
 print d
-a={'abc':'cdb'}
-b={'efv':'bug'}
-# c=dict(names="b",doom='d')
+a=(1,2,3)
+b=(3,4,5)
 c={}
 for k,v in zip(a,b):
     c[k]=v
     print zip(a,b)
     print c[k]
-# def test(names="abc",doom='def'):
-#     c={}
-#     for k,v in zip(names,doom):
-#         c[k]=v
-#         print 'the key is "%s" , the value is "%s"' % (k,c[k])
-#
-# a=test('ghjst','sfdgh')
-# print a
+e=dict(a='v',g='h')
+print e
+
+print dict(zip(('one', 'two'), (1, 2)))
+print dict([('one', 1), ('two', 2), ('three', 3)])
