@@ -5,6 +5,12 @@ __author__ = 'ITsystem'
 __mtime__ = '2015/11/4'
 
 import threading,time
+import multiprocessing
+
+
+class process(multiprocessing.Process):
+    pass
+
 
 class MyThread(threading.Thread):
     def __init__(self,id):

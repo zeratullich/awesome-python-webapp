@@ -10,13 +10,13 @@ from time import ctime,sleep
 def music(func):
     for i in range(2):
         print "I was listening to music %s. %s" %(func,ctime())
-        sleep(6)
+        sleep(4)
         print 'the music "%s" has end at %s' % (func,ctime())
 
 def move(func):
     for i in range(2):
         print "I was at the movies %s! %s" %(func,ctime())
-        sleep(4)
+        sleep(5)
         # print 'the movie "%s" has end at %s!' %(func,ctime())
 
 class MyThread(threading.Thread):
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         t.setDaemon(True)
         t.start()
         # print t
-    t.join()
+    # t.join()
     # t1.start()
     # t2.start()
     # t1.join()
